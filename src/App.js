@@ -1,10 +1,53 @@
+/* eslint-disable */
+import {useState} from "react";
 import "./App.css";
 
 function App() {
-  const han = "test입니다.1111";
+  const [tabNum, setTabNum] = useState(0);
+  const [content, setContent] = useState([
+    "1. Lorem ipsum dolor sit amet.",
+    "2. Lorem ipsum dolor sit amet.",
+    "3. Lorem ipsum dolor sit amet.",
+  ]);
+
+  const [modalView, setModalView] = useState(false);
+
+  const modalViewClick = () => {
+    setModalView(!modalView);
+  };
   return (
     <>
-      <h3 className="title">{han}</h3>
+      <ul className="tabmenu">
+        <li
+          className={`${tabNum == 0 ? "active" : null}`}
+          onClick={() => {
+            setTabNum(0);
+          }}
+        >
+          tab1
+        </li>
+        <li
+          className={`${tabNum == 1 ? "active" : null}`}
+          onClick={() => {
+            setTabNum(1);
+          }}
+        >
+          tab2
+        </li>
+        <li
+          className={`${tabNum == 2 ? "active" : null}`}
+          onClick={() => {
+            setTabNum(2);
+          }}
+        >
+          tab3
+        </li>
+      </ul>
+      <div>{content[tabNum]}</div>
+
+      <button onClick={modalViewClick}>클릭</button>
+
+      {modalView == true ? <div className="modals">test</div> : null}
     </>
   );
 }

@@ -1,3 +1,36 @@
-.title {
-  text-align: center;
+.text {
+  background-color: skyblue;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+.tabmenu {
+  display: flex;
+  gap: 10px;
+}
+.tabmenu li {
+  padding: 5px 16px;
+  background: #eee;
+  cursor: pointer;
+}
+.tabmenu li.active {
+  background: skyblue;
+}
+
+.modals {
+  background: yellow;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
