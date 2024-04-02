@@ -2,39 +2,41 @@ import React, {useState} from "react";
 import "./assets/css/style.css";
 
 function App() {
-  const [title, setTitle] = useState(["서울", "인천"]);
-  function titleChange() {
-    // setTitle(["서울1", "인천"]);
-    let newArray = [...title]; // ["서울", "인천"]
-    newArray[0] = "경기";
-    newArray[1] = "부산";
-
-    console.log(newArray);
-    setTitle(newArray);
-  }
-
-  function addTitle() {
-    let newArray = [...title];
-    newArray.push("대구");
-    setTitle(newArray);
-  }
+  const [num, setNum] = useState(0);
+  const [data, setData] = useState([
+    "1.Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
+    "2.Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
+    "3.Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
+  ]);
   return (
     <div>
-      <div>{title}</div>
-      <div
-        className="btn"
-        style={{display: "inline-block"}}
-        onClick={titleChange}
-      >
-        클릭
-      </div>
-      <div
-        className="btn primary"
-        style={{display: "inline-block"}}
-        onClick={addTitle}
-      >
-        추가
-      </div>
+      <h1>tab menu를 제작하세요</h1>
+      {/* {data[0]} */}
+
+      <ul className="menu">
+        {/* {data.map((item, idx) => {
+          return (
+            <>
+              <li
+                className={`${idx == num ? "active" : ""}`}
+                onClick={() => {
+                  setNum(idx);
+                }}
+              >
+                tab{idx + 1}
+              </li>
+            </>
+          );
+        })} */}
+
+        {data.map((item, idx) => {
+          return (
+            <>
+              <li className={`${idx == num ? "active" : ""}`}>{idx}</li>
+            </>
+          );
+        })}
+      </ul>
     </div>
   );
 }

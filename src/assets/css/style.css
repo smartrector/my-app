@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 h1 {
   background: skyblue;
 }
@@ -45,4 +50,15 @@ h1 {
 }
 .btn.info:hover {
   background-color: red;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu li {
+  padding: 10px 16px;
+}
+.menu li.active {
+  background: skyblue;
 }
