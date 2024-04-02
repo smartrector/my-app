@@ -1,36 +1,40 @@
+import React, {useState} from "react";
 import "./assets/css/style.css";
 
 function App() {
-  const myStyle = {display: "flex", backgroundColor: "red"};
-  function view(name) {
-    alert("test");
-    console.log("당신의 이름은 " + name);
+  const [title, setTitle] = useState(["서울", "인천"]);
+  function titleChange() {
+    // setTitle(["서울1", "인천"]);
+    let newArray = [...title]; // ["서울", "인천"]
+    newArray[0] = "경기";
+    newArray[1] = "부산";
+
+    console.log(newArray);
+    setTitle(newArray);
   }
 
-  function countNum() {
-    return 100;
+  function addTitle() {
+    let newArray = [...title];
+    newArray.push("대구");
+    setTitle(newArray);
   }
-  const yourname = "이순신";
-
   return (
     <div>
-      <div style={myStyle}>
-        <h1 className="logo">test</h1>
-        <span>test</span>
-      </div>
-      <button className="btn info" onClick={view}>
-        클릭
-      </button>
-      <button
-        className="btn primary"
-        onClick={() => {
-          view("홍길동");
-        }}
+      <div>{title}</div>
+      <div
+        className="btn"
+        style={{display: "inline-block"}}
+        onClick={titleChange}
       >
         클릭
-      </button>
-      <button className="btn">클릭</button>
-      {countNum()} / {yourname}
+      </div>
+      <div
+        className="btn primary"
+        style={{display: "inline-block"}}
+        onClick={addTitle}
+      >
+        추가
+      </div>
     </div>
   );
 }
