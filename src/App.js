@@ -10,7 +10,7 @@ function App() {
   ]);
   return (
     <div>
-      <h1>tab menu를 제작하세요</h1>
+      <h2>tab menu를 제작하세요</h2>
       {/* {data[0]} */}
 
       <ul className="menu">
@@ -32,11 +32,19 @@ function App() {
         {data.map((item, idx) => {
           return (
             <>
-              <li className={`${idx == num ? "active" : ""}`}>{idx}</li>
+              <li
+                className={`test ${idx == num ? "active" : ""}`}
+                onClick={() => {
+                  setNum(idx);
+                }}
+              >
+                tab{idx}
+              </li>
             </>
           );
         })}
       </ul>
+      <div>{data[num]}</div>
     </div>
   );
 }
