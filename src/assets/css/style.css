@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  background: skyblue;
+}
+
+.logo {
+  width: 200px;
+}
+
+/* .flex {
+  display: flex;
+} */
+
+.btn {
+  padding: 10px 20px;
+  /* border: 0 none; */
+  /* background-color: skyblue; */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: blue;
+  border: 1px solid #fff;
+  color: white;
+}
+
+.btn.primary {
+  background-color: skyblue;
+}
+.btn.primary:hover {
+  background-color: pink;
+}
+
+.btn.info {
+  background-color: green;
+}
+.btn.info:hover {
+  background-color: red;
+}

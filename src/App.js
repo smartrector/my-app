@@ -1,54 +1,37 @@
-/* eslint-disable */
-import {useState} from "react";
-import "./App.css";
+import "./assets/css/style.css";
 
 function App() {
-  const [tabNum, setTabNum] = useState(0);
-  const [content, setContent] = useState([
-    "1. Lorem ipsum dolor sit amet.",
-    "2. Lorem ipsum dolor sit amet.",
-    "3. Lorem ipsum dolor sit amet.",
-  ]);
+  const myStyle = {display: "flex", backgroundColor: "red"};
+  function view(name) {
+    alert("test");
+    console.log("당신의 이름은 " + name);
+  }
 
-  const [modalView, setModalView] = useState(false);
+  function countNum() {
+    return 100;
+  }
+  const yourname = "이순신";
 
-  const modalViewClick = () => {
-    setModalView(!modalView);
-  };
   return (
-    <>
-      <ul className="tabmenu">
-        <li
-          className={`${tabNum == 0 ? "active" : null}`}
-          onClick={() => {
-            setTabNum(0);
-          }}
-        >
-          tab1
-        </li>
-        <li
-          className={`${tabNum == 1 ? "active" : null}`}
-          onClick={() => {
-            setTabNum(1);
-          }}
-        >
-          tab2
-        </li>
-        <li
-          className={`${tabNum == 2 ? "active" : null}`}
-          onClick={() => {
-            setTabNum(2);
-          }}
-        >
-          tab3
-        </li>
-      </ul>
-      <div>{content[tabNum]}</div>
-
-      <button onClick={modalViewClick}>클릭</button>
-
-      {modalView == true ? <div className="modals">test</div> : null}
-    </>
+    <div>
+      <div style={myStyle}>
+        <h1 className="logo">test</h1>
+        <span>test</span>
+      </div>
+      <button className="btn info" onClick={view}>
+        클릭
+      </button>
+      <button
+        className="btn primary"
+        onClick={() => {
+          view("홍길동");
+        }}
+      >
+        클릭
+      </button>
+      <button className="btn">클릭</button>
+      {countNum()} / {yourname}
+    </div>
   );
 }
 
