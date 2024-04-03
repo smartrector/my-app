@@ -3,6 +3,7 @@ import "./assets/css/style.css";
 
 function App() {
   let [mView, setMView] = useState(false);
+  let [vNum, setVNum] = useState(1);
   let viewList = [
     {
       title: "안녕하세요!!!",
@@ -31,6 +32,7 @@ function App() {
   ];
   function modalView(idx) {
     setMView(true);
+    setVNum(idx);
   }
   function modalClose() {
     setMView(false);
@@ -38,10 +40,14 @@ function App() {
   return (
     <>
       <div>
-        <ul>
+        <ul className="viewList">
           {viewList.map((item, idx) => {
             return (
-              <li onClick={modalView}>
+              <li
+                onClick={() => {
+                  modalView(idx);
+                }}
+              >
                 {idx + 1}. {viewList[idx].title}
               </li>
             );
@@ -49,7 +55,7 @@ function App() {
         </ul>
       </div>
       {mView == true ? (
-        <Modal onclick={modalClose} viewListData={viewList} />
+        <Modal onclick={modalClose} viewListData={viewList} vNum={vNum} />
       ) : null}
     </>
   );
@@ -66,8 +72,8 @@ function Modal(props) {
           </button>
 
           <div className="modalBody">
-            <h3>{props.viewListData[2].title}</h3>
-            <p>{props.viewListData[2].content}</p>
+            <h3>{props.viewListData[props.vNum].title}</h3>
+            <p>{props.viewListData[props.vNum].content}</p>
           </div>
         </div>
       </div>

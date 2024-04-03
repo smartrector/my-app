@@ -111,3 +111,15 @@ body {
   top: 0;
   /* opacity: 0.3; */
 }
+
+.viewList li {
+  margin-bottom: 10px;
+  background: #efefef;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.viewList li:hover {
+  background: #ddd;
+}
