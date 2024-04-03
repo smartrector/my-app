@@ -2,33 +2,31 @@ import React, {useState} from "react";
 import "./assets/css/style.css";
 
 function App() {
-  const [num, setNum] = useState(0);
-  const [data, setData] = useState([
-    "1.한Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
-    "2.성Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
-    "3.용Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
-    "4.용Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, nesciunt!",
-  ]);
+  const num = 10;
   return (
-    <div>
-      <ul className="menu">
-        {data.map((han, idx) => {
-          return (
-            <>
-              <li
-                className={`tjklte ${idx == num ? "active" : ""}`}
-                onClick={() => {
-                  setNum(idx);
-                }}
-              >
-                tab{idx + 1}
-              </li>
-            </>
-          );
-        })}
-      </ul>
-      <div>{data[num]}</div>
-    </div>
+    <>
+      <div className="wrap">
+        부모컨테이너 {num}
+        <Child1 넘버={num} />
+      </div>
+    </>
+  );
+}
+
+function Child1(props) {
+  console.log(props);
+  return (
+    <>
+      <div className="wrap">자식컨테이너1 {props.넘버} </div>
+    </>
+  );
+}
+
+function Child2() {
+  return (
+    <>
+      <div className="wrap">자식콘테이너2</div>
+    </>
   );
 }
 
