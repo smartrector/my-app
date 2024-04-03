@@ -2,30 +2,35 @@ import React, {useState} from "react";
 import "./assets/css/style.css";
 
 function App() {
-  const num = 10;
+  let [mView, setMView] = useState(false);
+  function modalView() {
+    // alert("test");
+    setMView(true);
+  }
+  function modalClose() {
+    setMView(false);
+  }
   return (
     <>
-      <div className="wrap">
-        부모컨테이너 {num}
-        <Child1 넘버={num} />
+      <div>
+        <button className="btn primary" onClick={modalView}>
+          모달창열기
+        </button>
       </div>
+      {mView == true ? <Modal onclick={modalClose} /> : null}
     </>
   );
 }
 
-function Child1(props) {
-  console.log(props);
+function Modal(props) {
   return (
     <>
-      <div className="wrap">자식컨테이너1 {props.넘버} </div>
-    </>
-  );
-}
-
-function Child2() {
-  return (
-    <>
-      <div className="wrap">자식콘테이너2</div>
+      <div className="modalWrap">
+        <div className="modal">
+          모달창
+          <button onClick={props.onclick}>닫기</button>
+        </div>
+      </div>
     </>
   );
 }
