@@ -17,24 +17,33 @@ function App() {
   }
   return (
     <>
-      {viewData}
-      <div>
-        <label htmlFor="name">이름</label>
+      <div className="inpWrap">
         <input
           type="text"
           id="name"
           onChange={textDataChange}
           value={textData}
+          placeholder="입력하세요"
         />
         {/* 
         <input type="text" id="name" onChange={함수} />
         <input type="text" id="name" onChange={()=>{함수(인자)}} />
         <input type="text" id="name" onChange={()=>{setTextData("ddd")}} /> 
         */}
-      </div>
-      <div>
+
         <button onClick={clickListener}>입력</button>
       </div>
+
+      <ul className="menupan">
+        {/* {viewData.map(function(){})} */}
+        {viewData.map((item, idx) => {
+          return (
+            <>
+              <li>{viewData[idx]}</li>
+            </>
+          );
+        })}
+      </ul>
     </>
   );
 }

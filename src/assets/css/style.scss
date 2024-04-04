@@ -123,3 +123,21 @@ body {
 .viewList li:hover {
   background: #ddd;
 }
+
+$primary: skyblue;
+$hover: blue;
+$fontColor-gary: #444;
+$fontColor-white: white;
+
+.menupan {
+  li {
+    background: $primary;
+    padding: 10px;
+    border-radius: 10px;
+    color: $fontColor-white;
+    cursor: pointer;
+    &:hover {
+      background: $hover;
+    }
+  }
+}
