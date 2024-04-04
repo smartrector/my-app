@@ -1,49 +1,50 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import "./assets/css/style.scss";
 
 function App() {
   let [viewData, setViewData] = useState([]);
-  let [textData, setTextData] = useState("");
+  let [num, setNum] = useState(1);
+  let [load, setLoad] = useState(true);
+  function dataInsert() {}
 
-  function clickListener() {
-    let copy = [...viewData];
-    copy.push(textData);
-    setViewData(copy);
-    setTextData(""); // input value 제거
-  }
-  function textDataChange(e) {
-    console.log(e.target.value);
-    setTextData(e.target.value);
-  }
+  useEffect(() => {
+    //load true
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts?_page=1&_limit=10")
+      .then(function (res) {
+        //console.log(res.data);
+        //load false
+        let inData = res.data;
+        setViewData(inData);
+      })
+      .catch(function (error) {
+        console.log("no data");
+      });
+    console.log("view");
+  }, []);
+
+  // useEffect(function(){},[])
+  // useEffect(()=>{},[])
+  console.log("잘읽어요" + num);
   return (
     <>
-      <div className="inpWrap">
-        <input
-          type="text"
-          id="name"
-          onChange={textDataChange}
-          value={textData}
-          placeholder="입력하세요"
-        />
-        {/* 
-        <input type="text" id="name" onChange={함수} />
-        <input type="text" id="name" onChange={()=>{함수(인자)}} />
-        <input type="text" id="name" onChange={()=>{setTextData("ddd")}} /> 
-        */}
+      {num}
+      <button
+        onClick={() => {
+          setNum(num + 1);
+        }}
+      >
+        좋아요
+      </button>
 
-        <button onClick={clickListener}>입력</button>
-      </div>
-
-      <ul className="menupan">
-        {/* {viewData.map(function(){})} */}
-        {viewData.map((item, idx) => {
-          return (
-            <>
-              <li>{viewData[idx]}</li>
-            </>
-          );
-        })}
-      </ul>
+      {viewData.map((item) => {
+        return (
+          <>
+            <div>{item.title}</div>
+          </>
+        );
+      })}
     </>
   );
 }
