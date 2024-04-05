@@ -27,7 +27,7 @@ function App() {
       });
   }, [currentPage]);
 
-  const renderPageNumbers = () => {
+  const pagNumber = () => {
     const pageNumbers = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -52,7 +52,7 @@ function App() {
 
       <div className="pagination">
         <div>이전</div>
-        <ul className="page">{renderPageNumbers()}</ul>
+        <ul className="page">{pagNumber()}</ul>
         <div>다음</div>
       </div>
     </>
