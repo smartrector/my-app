@@ -27,34 +27,33 @@ function App() {
       });
   }, [currentPage]);
 
-  const pageNumber = () => {
-    // const page = 5
-    // let startPage = Math.floor((page-1)/pageCnt * pageCnt +1) ;
-    // let endPage = startPage + pageCnt - 1;
-    // let number = "";
-    // for (let i = startPage; i <= endPage; i++) {
-    //   number += "";
-    // }
-    // return number;
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= 10; i++) {
+      pageNumbers.push(
+        <li key={i} onClick={() => setCurrentPage(i)}>
+          {i}
+        </li>
+      );
+    }
+
+    return pageNumbers;
   };
 
   return (
     <>
       <div>
         {totalPage}
-        {viewData.map((item) => {
-          return (
-            <>
-              <div>{item.title}</div>
-            </>
-          );
+        {viewData.map((item, i) => {
+          return <div key={i}>{item.title}</div>;
         })}
       </div>
 
       <div className="pagination">
         <div>이전</div>
-        <ul className="page">{pageNumber}</ul>
-        <div>다음</div>
+        <ul className="page">{renderPageNumbers()}</ul>
+        <div>다음1</div>
       </div>
     </>
   );
