@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default BbsCommunity;
+export default App;
