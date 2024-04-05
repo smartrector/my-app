@@ -53,7 +53,7 @@ function App() {
       <div className="pagination">
         <div>이전</div>
         <ul className="page">{renderPageNumbers()}</ul>
-        <div>다음1</div>
+        <div>다음</div>
       </div>
     </>
   );
