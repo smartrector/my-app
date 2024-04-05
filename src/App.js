@@ -30,6 +30,9 @@ function App() {
   const pagNumber = () => {
     const pageNumbers = [];
 
+    // const page = 5
+    // let startPage = Math.floor((page-1)/pageCnt * pageCnt +1) ;
+    // let endPage = startPage + pageCnt - 1;
     for (let i = 1; i <= 10; i++) {
       pageNumbers.push(
         <li key={i} onClick={() => setCurrentPage(i)}>
