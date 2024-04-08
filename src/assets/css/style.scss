@@ -13,6 +13,11 @@ li {
   list-style: none;
 }
 
+html,
+body {
+  height: 100vh;
+}
+
 h1 {
   background: skyblue;
 }
@@ -196,4 +201,37 @@ $primary-color: #099cf1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.subPro {
+  h3 {
+    padding: 10px 0;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+.proList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: blue;
+  li {
+    width: 20%;
+    flex: 1 0 auto;
+    background: pink;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.footerWrap {
+  background: skyblue;
+  padding: 20px 0;
 }
