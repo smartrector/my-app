@@ -1,63 +1,26 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
+import React from "react";
 import "./assets/css/style.scss";
+import {Routes, Route} from "react-router-dom";
+import Header from "./layout/Header";
+import Footer from "./layout/Footer";
+import Main from "./layout/Main";
+import Company from "./components/Company";
+import Product from "./components/Product";
+import Community from "./components/Community";
 
 function App() {
-  const [viewData, setViewData] = useState([]);
-  const [totalPage, setTotalPage] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [listCnt, setListCnt] = useState(10);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_limit=${listCnt}`
-      )
-      .then((res) => {
-        console.log(res);
-        setViewData(res.data);
-
-        console.log(res.headers["x-total-count"]);
-        let totalRecord = res.headers["x-total-count"];
-        let totalPage = Math.ceil(totalRecord / listCnt);
-        setTotalPage(totalPage);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [currentPage]);
-
-  const pagNumber = () => {
-    const pageNumbers = [];
-
-    // const page = 5
-    // let startPage = Math.floor((page-1)/pageCnt * pageCnt +1) ;
-    // let endPage = startPage + pageCnt - 1;
-    for (let i = 1; i <= 10; i++) {
-      pageNumbers.push(
-        <li key={i} onClick={() => setCurrentPage(i)}>
-          {i}
-        </li>
-      );
-    }
-
-    return pageNumbers;
-  };
-
   return (
     <>
-      <div>
-        {totalPage}
-        {viewData.map((item, i) => {
-          return <div key={i}>{item.title}</div>;
-        })}
-      </div>
+      <Header />
 
-      <div className="pagination">
-        <div>이전</div>
-        <ul className="page">{pagNumber()}</ul>
-        <div>다음</div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/com" element={<Company />} />
+        <Route path="/pro" element={<Product />} />
+        <Route path="/comm" element={<Community />} />
+      </Routes>
+
+      <Footer />
     </>
   );
 }
