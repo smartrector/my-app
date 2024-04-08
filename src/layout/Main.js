@@ -7,11 +7,13 @@ function Main({vData}) {
 
       <div className="container">
         <ul className="proList">
-          {vData.map((item) => {
+          {vData.slice(0, 4).map((item, idx) => {
             return (
               <li>
-                <img src={`./images/${item.img}`} alt="" />
-                {item.title}
+                <a href={`./pro/${item.id}`}>
+                  <img src={`./images/${item.img}`} alt="" />
+                  {item.title}
+                </a>
               </li>
             );
           })}
