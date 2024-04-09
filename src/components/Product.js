@@ -2,7 +2,7 @@ import React from "react";
 import {useParams} from "react-router-dom";
 
 function Product(props) {
-  const {item} = useParams();
+  const {item, userId} = useParams();
 
   let myData = props.vData.find(function (x) {
     return x.id == item;
