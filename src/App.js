@@ -4,6 +4,10 @@ import "./assets/css/tStyle.scss";
 import {createStore} from "redux";
 import {Provider, useSelector, useDispatch} from "react-redux";
 
+// persist 설정 lib
+// import {persistStore, persistReducer} from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+
 function reducer(state, action) {
   // console.log("init data : " + state.num);
   console.log(action);
@@ -11,14 +15,13 @@ function reducer(state, action) {
     return {
       ...state,
       num: state.num + action.payload,
-      title: state.title + action.payload,
     };
   }
 
   if (action.type === "titleModi") {
     return {
       ...state,
-      title: action.payload,
+      title: action.text,
     };
   }
 
@@ -26,13 +29,24 @@ function reducer(state, action) {
 }
 
 const initialState = {
-  num: 100,
+  num: 0,
   title: "안녕하세요",
   content:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod asperiores, quas maxime aliquid excepturi accusamus quos dolorem temporibus dolor beatae.",
 };
 
+// persist구성
+// const persistConfig = {
+//   key: "root",
+//   storage,
+// };
+
+// const persistedReducer = persistReducer(persistConfig, reducer);
+
+// const store = createStore(persistedReducer);
 const store = createStore(reducer, initialState);
+
+// const persitor = persistStore(store);
 
 function App() {
   return (
@@ -62,17 +76,17 @@ function ChildOne() {
 }
 
 function ChildTwo() {
-  // const num = useSelector((state) => {
-  //   return state.num;
-  // });
-  // const content = useSelector((state) => {
-  //   return state.content;
-  // });
+  const num = useSelector((state) => {
+    return state.num;
+  });
+  const title = useSelector((state) => {
+    return state.title;
+  });
 
   // const {num, content} = useSelector((state) => {
   //   return state;
   // });
-  const {num, content, title} = useSelector((state) => state);
+  // const {num, content, title} = useSelector((state) => state);
   const dispatch = useDispatch();
   console.log(" child trans : " + num);
   return (
@@ -92,7 +106,7 @@ function ChildTwo() {
         </button>
         <button
           onClick={() => {
-            dispatch({type: "titleModi", payload: "title변경됨"});
+            dispatch({type: "titleModi", text: "title변경됨"});
           }}
         >
           글자변경
