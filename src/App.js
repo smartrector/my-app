@@ -2,10 +2,26 @@ import React from "react";
 import "./assets/css/tStyle.scss";
 //npm i redux react-redux
 import {createStore} from "redux";
-import {Provider, useSelector} from "react-redux";
+import {Provider, useSelector, useDispatch} from "react-redux";
 
 function reducer(state, action) {
-  console.log("init data : " + state.num);
+  // console.log("init data : " + state.num);
+  console.log(action);
+  if (action.type === "numUp") {
+    return {
+      ...state,
+      num: state.num + action.payload,
+      title: state.title + action.payload,
+    };
+  }
+
+  if (action.type === "titleModi") {
+    return {
+      ...state,
+      title: action.payload,
+    };
+  }
+
   return state;
 }
 
@@ -57,7 +73,7 @@ function ChildTwo() {
   //   return state;
   // });
   const {num, content, title} = useSelector((state) => state);
-
+  const dispatch = useDispatch();
   console.log(" child trans : " + num);
   return (
     <>
@@ -66,7 +82,21 @@ function ChildTwo() {
         number ( {num} )<br />
         title : {title}
         <br />
-        content : {content}
+        <button
+          className=" bg-blue-300 px-4 py-1 rounded-md hover:bg-blue-500 hover:text-white"
+          onClick={() => {
+            dispatch({type: "numUp", payload: 1});
+          }}
+        >
+          아주쉬운클릭
+        </button>
+        <button
+          onClick={() => {
+            dispatch({type: "titleModi", payload: "title변경됨"});
+          }}
+        >
+          글자변경
+        </button>
       </div>
     </>
   );
