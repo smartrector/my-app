@@ -5,10 +5,17 @@ import {createStore} from "redux";
 import {Provider, useSelector, useDispatch} from "react-redux";
 
 // persist 설정 lib
-// import {persistStore, persistReducer} from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import {persistStore, persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-function reducer(state, action) {
+const initialState = {
+  num: 0,
+  title: "안녕하세요",
+  content:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod asperiores, quas maxime aliquid excepturi accusamus quos dolorem temporibus dolor beatae.",
+};
+
+function reducer(state = initialState, action) {
   // console.log("init data : " + state.num);
   console.log(action);
   if (action.type === "numUp") {
@@ -28,25 +35,18 @@ function reducer(state, action) {
   return state;
 }
 
-const initialState = {
-  num: 0,
-  title: "안녕하세요",
-  content:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod asperiores, quas maxime aliquid excepturi accusamus quos dolorem temporibus dolor beatae.",
+// persist구성;
+const persistConfig = {
+  key: "root",
+  storage,
 };
 
-// persist구성
-// const persistConfig = {
-//   key: "root",
-//   storage,
-// };
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-// const persistedReducer = persistReducer(persistConfig, reducer);
+const store = createStore(persistedReducer);
+// const store = createStore(reducer, initialState);
 
-// const store = createStore(persistedReducer);
-const store = createStore(reducer, initialState);
-
-// const persitor = persistStore(store);
+const persitor = persistStore(store);
 
 function App() {
   return (
