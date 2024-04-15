@@ -41,12 +41,12 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+// const persistedReducer = persistReducer(persistConfig, reducer);
 
-const store = createStore(persistedReducer);
-// const store = createStore(reducer, initialState);
+// const store = createStore(persistedReducer);
+const store = createStore(reducer);
 
-const persitor = persistStore(store);
+// const persitor = persistStore(store);
 
 function App() {
   return (
