@@ -43,10 +43,10 @@ const persistConfig = {
 
 // const persistedReducer = persistReducer(persistConfig, reducer);
 
-// const store = createStore(persistedReducer);
-const store = createStore(reducer);
+const store = createStore(persistedReducer);
+// const store = createStore(reducer);
 
-// const persitor = persistStore(store);
+const persitor = persistStore(store);
 
 function App() {
   return (
