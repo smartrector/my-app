@@ -5,9 +5,14 @@ import mapoRestaurants from "./utils/mapData";
 import zIndex from "@mui/material/styles/zIndex";
 
 function App() {
+  var x = 37.553645;
+  var y = 126.924552;
   var radius = 2000; //마포갈비
 
+  const [map, setMap] = useState(null);
+  const [userMarker, setUserMarker] = useState(null);
   const [nowMarker, setNowMarker] = useState([37.553645, 126.924552]);
+  const [lastMarker, setLastMarker] = useState(null);
 
   useEffect(() => {
     initializeMap(); // 페이지 로드 시 지도 초기화
@@ -37,12 +42,13 @@ function App() {
       position: markerPosition,
       draggable: true, // 마커를 드래그할 수 있도록 설정
     });
+    // marker.setMap(newMap);
+    //setUserMarker(marker);
 
     // 마커가 드래그되었을 때 이벤트 리스너 추가
     kakao.maps.event.addListener(marker, "dragend", function () {
       const newCenter = marker.getPosition(); // 새로운 중심 좌표는 마커의 위치
       newMap.setCenter(newCenter); // 지도의 중심 좌표를 새로운 위치로 변경
-
       // console.log(newCenter.getLat(), newCenter.getLng()); // 새로운 중심 좌표 로그 출력
     });
 
@@ -69,7 +75,7 @@ function App() {
         image: markerImage,
       });
       newMarker.setMap(newMap);
-      // circle.setPosition(markerPosition);
+      circle.setPosition(markerPosition);
     });
 
     circle.setMap(newMap);
